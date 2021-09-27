@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+    core:
+        image: fastapi:1.0
+        build: .
+        container_name: fastapi
+        ports:
+         - 8080:15400
+        volumes: 
+        - ${PWD}/app:/app
+    mongodb:
+        image : mongo:5.0.3
+        container_name: mongo
+        environment:
+        - PUID=1000
+        - PGID=1000
+        volumes:
+        - ${PWD}/app:/app/datadb
+        ports:
+        - 27017:27017
+        #restart: always
